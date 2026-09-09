@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1105th CDC QR CODE SCANNER</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+  <main class="app">
+    <h1>1105th CDC QR CODE SCANNER</h1>
+
+    <label for="school">School</label>
+    <select id="school"></select>
+
+    <label for="code">School login code</label>
+    <input id="code" type="password" placeholder="Enter login code">
+
+    <button id="login">Login</button>
+    <button id="start" disabled>Start scanner</button>
+
+    <div id="reader"></div>
+    <div id="scanStatus" aria-live="polite"></div>
+    <p id="message"></p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

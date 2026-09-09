@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 18px;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0001;
+}
+
+h1 {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+select,
+input,
+button {
+  width: 100%;
+  margin-top: 6px;
+  padding: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 12px;
+  border: 0;
+  background: #14532d;
+  color: white;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#reader {
+  margin-top: 18px;
+}
+
+#message {
+  min-height: 24px;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+#scanStatus {
+  display: none;
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+#scanStatus.visible {
+  display: block;
+}
