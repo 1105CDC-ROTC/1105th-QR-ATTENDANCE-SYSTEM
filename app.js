@@ -41,18 +41,13 @@ async function login() {
   }
 
   try {
-    const response = await fetch(BACKEND_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify({
-        action: 'login',
-        school: school,
-        loginCode: loginCode
-      })
+    const params = new URLSearchParams({
+      action: 'login',
+      school: school,
+      loginCode: loginCode
     });
 
+    const response = await fetch(`${BACKEND_URL}?${params.toString()}`);
     const data = await response.json();
 
     if (!data.ok) {
@@ -119,18 +114,13 @@ async function handleScan(value) {
   show('Reading QR code...', true);
 
   try {
-    const response = await fetch(BACKEND_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
-      body: JSON.stringify({
-        action: 'scan',
-        sessionId: sessionId,
-        qrValue: value
-      })
+    const params = new URLSearchParams({
+      action: 'scan',
+      sessionId: sessionId,
+      qrValue: value
     });
 
+    const response = await fetch(`${BACKEND_URL}?${params.toString()}`);
     const data = await response.json();
 
     if (!data.ok) {
@@ -139,10 +129,9 @@ async function handleScan(value) {
 
     showRecorded_(data);
 
-if (navigator.vibrate) {
-  navigator.vibrate(150);
-}
-
+    if (navigator.vibrate) {
+      navigator.vibrate(150);
+    }
   } catch (error) {
     show(error.message || 'Scan failed.', false);
   } finally {
