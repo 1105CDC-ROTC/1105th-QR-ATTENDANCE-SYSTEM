@@ -1,0 +1,16 @@
+{
+  "name": "1105th CDC QR Code Scanner",
+  "short_name": "1105th QR",
+  "description": "QR attendance scanner of the 1105th CDC",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b3d1e",
+  "theme_color": "#0b3d1e",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
