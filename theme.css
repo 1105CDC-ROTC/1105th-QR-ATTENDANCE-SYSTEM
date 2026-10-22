@@ -180,3 +180,38 @@ body::after {
 .app.scanning #message {
   margin-top: 12px;
 }
+/* Time in / Time out buttons */
+#modeBar {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+main.app #modeBar .mode {
+  flex: 1;
+  margin-top: 0;
+  border: 3px solid transparent;
+}
+main.app #modeBar #modeIn {
+  background: var(--army-green);
+  color: #fff;
+}
+main.app #modeBar #modeOut {
+  background: var(--army-red);
+  color: #fff;
+}
+main.app #modeBar #modeIn:disabled,
+main.app #modeBar #modeOut:disabled {
+  background: #cfd4bd;
+  color: #7c8466;
+}
+
+/* Habang nag-scan: naka-highlight ang napiling mode */
+.app.scanning #modeBar {
+  margin: 0 0 14px;
+}
+.app.scanning #modeBar .mode:not(.active) {
+  opacity: .45;
+}
+.app.scanning #modeBar .mode.active {
+  border-color: var(--army-gold);
+}
