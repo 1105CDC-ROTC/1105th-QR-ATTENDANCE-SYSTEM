@@ -12,17 +12,19 @@
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body>
-  <main class="app">
+  <main class="app" id="app">
     <h1>1105th CDC QR CODE SCANNER</h1>
 
-   <label for="school">SELECT INSTITUTION</label>
-    <select id="school"></select>
+    <div id="setup">
+      <label for="school">SELECT INSTITUTION</label>
+      <select id="school"></select>
 
-    <label for="code">INSTITUTION LOGIN CODE</label>
-    <input id="code" type="password" placeholder="Enter institution login code">
+      <label for="code">INSTITUTION LOGIN CODE</label>
+      <input id="code" type="password" placeholder="Enter institution login code">
 
-    <button id="login">Login</button>
-    <button id="start" disabled>Start scanner</button>
+      <button id="login">Login</button>
+      <button id="start" disabled>Start scanner</button>
+    </div>
 
     <div id="reader"></div>
     <div id="scanStatus" aria-live="polite"></div>
