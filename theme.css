@@ -1,0 +1,150 @@
+/* 1105th CDC QR Scanner - Army theme (loads AFTER style.css) */
+:root {
+  --army-dark: #14391f;
+  --army-green: #1b5e2f;
+  --army-gold: #fcd116;     /* PH flag yellow */
+  --army-red: #ce1126;      /* PH flag red */
+  --army-blue: #0038a8;     /* PH flag blue */
+}
+
+html { min-height: 100%; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: #2f3a16;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, .28), rgba(0, 0, 0, .5)),
+    url("bg-camo.jpg");
+  background-size: auto, 600px 600px;
+  background-attachment: fixed, fixed;
+  padding: 18px 14px;
+  box-sizing: border-box;
+}
+
+/* big faded logo behind the card */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("logo-watermark.png") center 55% / min(88vw, 560px) no-repeat;
+  opacity: .13;
+  pointer-events: none;
+  z-index: 0;
+}
+
+main.app {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .95);
+  border-radius: 16px;
+  padding: 28px 22px 26px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, .45);
+}
+
+/* Philippine-flag colour stripe on top of the card */
+main.app::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 7px;
+  background: linear-gradient(90deg,
+    var(--army-blue) 0 33.3%, var(--army-red) 33.3% 66.6%, var(--army-gold) 66.6% 100%);
+}
+
+main.app h1 {
+  text-align: center;
+  color: var(--army-dark);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  margin: 6px 0 22px;
+}
+main.app h1::before {
+  content: "";
+  display: block;
+  width: 96px; height: 96px;
+  margin: 0 auto 12px;
+  background: url("logo-small.png") center / contain no-repeat;
+}
+main.app h1::after {
+  content: "QR ATTENDANCE SYSTEM";
+  display: block;
+  margin-top: 8px;
+  font-size: .7rem;
+  letter-spacing: .28em;
+  color: #6b6b2a;
+}
+
+main.app label {
+  color: var(--army-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: .78rem;
+  letter-spacing: .06em;
+}
+
+main.app select,
+main.app input {
+  border: 2px solid #c7d1a8;
+  border-radius: 10px;
+  background-color: #fff;
+}
+main.app select:focus,
+main.app input:focus {
+  outline: none;
+  border-color: var(--army-green);
+  box-shadow: 0 0 0 3px rgba(27, 94, 47, .22);
+}
+
+main.app button {
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+main.app #login {
+  background: linear-gradient(180deg, var(--army-green), var(--army-dark));
+  color: #fff;
+  border: 0;
+}
+main.app #start {
+  background: linear-gradient(180deg, #f3c614, #c9a006);
+  color: #1d2a0c;
+  border: 0;
+}
+main.app #start:disabled {
+  background: #cfd4bd;
+  color: #7c8466;
+}
+
+main.app #reader {
+  margin-top: 16px;
+  border: 3px solid var(--army-green) !important;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0d1a0f;
+}
+
+main.app #scanStatus,
+main.app #message {
+  text-align: center;
+  font-weight: 600;
+  color: var(--army-dark);
+}
+
+/* hide the empty scanner frame until the camera starts */
+main.app #reader:empty { border: 0 !important; margin: 0; }
+
+/* cartoon soldiers standing at the bottom of the screen */
+body::after {
+  content: "";
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  height: min(50vw, 260px);
+  background: url("soldiers.svg") center bottom / contain no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
