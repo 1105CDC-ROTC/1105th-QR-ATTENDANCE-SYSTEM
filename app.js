@@ -4,15 +4,20 @@ const BACKEND_URL =
 let scanner;
 let sessionId = '';
 let busy = false;
+let mode = '';
+let lastValue = '';
+let lastTime = 0;
 
 const schoolSelect = document.getElementById('school');
 const codeInput = document.getElementById('code');
 const loginButton = document.getElementById('login');
-const startButton = document.getElementById('start');
+const modeInButton = document.getElementById('modeIn');
+const modeOutButton = document.getElementById('modeOut');
 
 window.addEventListener('load', loadSchools);
 loginButton.addEventListener('click', login);
-startButton.addEventListener('click', startScanner);
+modeInButton.addEventListener('click', () => chooseMode('in'));
+modeOutButton.addEventListener('click', () => chooseMode('out'));
 
 async function loadSchools() {
   try {
@@ -59,9 +64,10 @@ async function login() {
     schoolSelect.disabled = true;
     codeInput.disabled = true;
     loginButton.disabled = true;
-    startButton.disabled = false;
+    modeInButton.disabled = false;
+    modeOutButton.disabled = false;
 
-    show('Login successful. Start scanner.', true);
+    show('Login successful. Choose Time in or Time out.', true);
   } catch (error) {
     show(error.message || 'Login failed.', false);
   }
@@ -99,7 +105,6 @@ async function startScanner() {
       () => {}
     );
 
-    startButton.disabled = true;
     document.getElementById('app').classList.add('scanning');
     show('Scanner is ready.', true);
   } catch (error) {
@@ -111,6 +116,11 @@ async function startScanner() {
 async function handleScan(value) {
   if (busy) return;
 
+  const now = Date.now();
+  if (value === lastValue && now - lastTime < 8000) return;
+  lastValue = value;
+  lastTime = now;
+
   busy = true;
   show('Reading QR code...', true);
 
@@ -118,7 +128,8 @@ async function handleScan(value) {
     const params = new URLSearchParams({
       action: 'scan',
       sessionId: sessionId,
-      qrValue: value
+      qrValue: value,
+      mode: mode
     });
 
     const response = await fetch(`${BACKEND_URL}?${params.toString()}`);
@@ -191,4 +202,16 @@ function show(text, success) {
 
   message.textContent = text;
   message.className = success ? 'success' : 'error';
+}
+
+function chooseMode(newMode) {
+  setMode(newMode);
+  startScanner();
+}
+
+function setMode(newMode) {
+  mode = newMode;
+  lastValue = '';
+  modeInButton.classList.toggle('active', mode === 'in');
+  modeOutButton.classList.toggle('active', mode === 'out');
 }
