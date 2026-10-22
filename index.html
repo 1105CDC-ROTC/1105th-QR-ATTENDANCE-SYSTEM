@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>1105th CDC QR CODE SCANNER</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0b3d1e">
+<link rel="apple-touch-icon" href="icon-192.png">
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body>
@@ -25,6 +28,11 @@
     <p id="message"></p>
   </main>
 
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
+</script>
   <script src="app.js"></script>
 </body>
 </html>
