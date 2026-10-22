@@ -100,6 +100,7 @@ async function startScanner() {
     );
 
     startButton.disabled = true;
+    document.getElementById('app').classList.add('scanning');
     show('Scanner is ready.', true);
   } catch (error) {
     scanner = null;
