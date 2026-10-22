@@ -1,7 +1,7 @@
 // Simple service worker: network-first, so updates to the website always show up.
 // Only same-origin files are cached (the shell). Attendance/API requests are never touched.
-const CACHE = "1105th-qr-v2";
-const SHELL = ["./", "./index.html", "./style.css", "./app.js", "./manifest.json", "./icon-192.png", "./icon-512.png", "./icon-maskable-192.png", "./icon-maskable-512.png"];
+const CACHE = "1105th-qr-v3";
+const SHELL = ["./", "./index.html", "./style.css", "./theme.css", "./app.js", "./manifest.json", "./icon-192.png", "./icon-512.png", "./icon-maskable-192.png", "./icon-maskable-512.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -20,7 +20,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(req.url);
   if (req.method !== "GET" || url.origin !== self.location.origin) return;
   e.respondWith(
-    fetch(req)
+        fetch(req, { cache: "no-store" })
       .then((res) => {
         const copy = res.clone();
         caches.open(CACHE).then((c) => c.put(req, copy));
