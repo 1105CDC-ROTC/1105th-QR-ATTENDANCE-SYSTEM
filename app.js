@@ -32,8 +32,12 @@ async function loadSchools() {
       show('No schools are configured.', false);
     }
   } catch (error) {
-    show('Unable to load schools. Check the backend URL.', false);
-  }
+    show(
+      navigator.onLine
+        ? 'Unable to load schools. Please try again.'
+        : 'No internet connection. Check your connection, then reload the app.',
+      false
+    );  }
 }
 
 async function login() {
@@ -69,7 +73,12 @@ async function login() {
 
     show('Login successful. Choose Time in or Time out.', true);
   } catch (error) {
-    show(error.message || 'Login failed.', false);
+    show(
+      navigator.onLine
+        ? (error.message || 'Login failed.')
+        : 'No internet connection. Check your connection and try again.',
+      false
+    );
   }
 }
 
