@@ -7,13 +7,18 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="theme.css">
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0b3d1e">
-<link rel="apple-touch-icon" href="icon-192.png">
-  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <meta name="theme-color" content="#0b3d1e">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <script src="html5-qrcode.min.js"></script>
 </head>
 <body>
   <main class="app" id="app">
     <h1>1105th CDC QR CODE SCANNER</h1>
+
+    <div id="statusBar">
+      <span id="netBadge">Online</span>
+      <button id="pendingBadge" type="button" hidden></button>
+    </div>
 
     <div id="setup">
       <label for="school">SELECT INSTITUTION</label>
@@ -23,10 +28,9 @@
       <input id="code" type="password" placeholder="Enter institution login code">
 
       <button id="login">Login</button>
-      
     </div>
 
-        <div id="modeBar">
+    <div id="modeBar">
       <button id="modeIn" class="mode" type="button" disabled>Time in</button>
       <button id="modeOut" class="mode" type="button" disabled>Time out</button>
     </div>
@@ -37,10 +41,10 @@
   </main>
 
   <script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-  }
-</script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
   <script src="app.js"></script>
 </body>
 </html>
