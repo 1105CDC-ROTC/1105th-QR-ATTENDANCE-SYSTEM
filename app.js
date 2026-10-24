@@ -485,8 +485,8 @@ async function recordLocalScan(value, nowMs) {
   const index = record.cadetMap.get(cadetId);
 
   if (index === undefined) {
-    throw new Error(
-      'Cadet ID is not in this phone list. Connect to the internet and log in again to refresh.'
+     throw new Error(
+      `Serial number not found in the ${record.school} list. Connect to the internet and log in again to refresh, or contact the administrator/developer.`
     );
   }
 
