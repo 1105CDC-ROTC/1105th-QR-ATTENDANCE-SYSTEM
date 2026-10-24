@@ -110,15 +110,6 @@ main.app #login {
   color: #fff;
   border: 0;
 }
-main.app #start {
-  background: linear-gradient(180deg, #f3c614, #c9a006);
-  color: #1d2a0c;
-  border: 0;
-}
-main.app #start:disabled {
-  background: #cfd4bd;
-  color: #7c8466;
-}
 
 main.app #reader {
   margin-top: 16px;
@@ -180,7 +171,8 @@ body::after {
 .app.scanning #message {
   margin-top: 12px;
 }
-/* Time in / Time out buttons */
+
+/* ===== Time in / Time out buttons ===== */
 #modeBar {
   display: flex;
   gap: 10px;
@@ -214,4 +206,43 @@ main.app #modeBar #modeOut:disabled {
 }
 .app.scanning #modeBar .mode.active {
   border-color: var(--army-gold);
+}
+
+/* ===== Offline status ===== */
+#statusBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -10px 0 14px;
+}
+#netBadge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--army-green);
+}
+#netBadge.off {
+  background: var(--army-red);
+}
+main.app #pendingBadge {
+  width: auto;
+  margin: 0;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: .75rem;
+  letter-spacing: 0;
+  text-transform: none;
+  background: #e0a800;
+  color: #1d2a0c;
+}
+main.app #pendingBadge.warn {
+  background: var(--army-red);
+  color: #fff;
+}
+#pendingBadge[hidden] {
+  display: none;
 }
