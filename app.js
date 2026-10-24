@@ -531,6 +531,17 @@ async function recordLocalScan(value, nowMs) {
 function syncSoon() {
   clearTimeout(syncTimer);
   syncTimer = setTimeout(syncAll, 1500);
+  requestBackgroundSync();
+}
+
+function requestBackgroundSync() {
+  if (!('serviceWorker' in navigator)) return;
+
+  navigator.serviceWorker.ready
+    .then(registration =>
+      registration.sync ? registration.sync.register('sync-scans') : null
+    )
+    .catch(() => {});
 }
 
 async function syncAll() {
